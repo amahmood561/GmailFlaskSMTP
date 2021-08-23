@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask import Flask, request
 import smtplib
 import configparser
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -23,8 +24,11 @@ def customemail():
     # data is empty
     config = configparser.ConfigParser()
     config.read('config.cfg')
-    email = config.get('DEFAULT', 'email')
-    val = config.get('DEFAULT', 'info')
+    print(config)
+    #email = config.get('DEFAULT', 'email')
+    #val = config.get('DEFAULT', 'info')
+    email = os.getenv('username')
+    val = os.getenv('pw')
     email = email[1:-1]
     val = val[1:-1]
     gmail_user = email
@@ -32,7 +36,7 @@ def customemail():
 
     sent_from = gmail_user
 
-    to = ['xxx@gmail.com']
+    to = ['amahmood561@gmail.com']
     subject = data.get('subject')
     body = data.get('message')
     #subject = 'OMG Super Important Message'
