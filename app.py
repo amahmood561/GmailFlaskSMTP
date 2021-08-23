@@ -29,8 +29,8 @@ def customemail():
     #val = config.get('DEFAULT', 'info')
     email = os.getenv('username')
     val = os.getenv('pw')
-    email = email[1:-1]
-    val = val[1:-1]
+    #email = email[1:-1]
+    #val = val[1:-1]
     gmail_user = email
     gmail_password = val
 
