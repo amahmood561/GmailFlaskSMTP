@@ -22,29 +22,17 @@ def send_emails():
 def customemail():
     import logging
     logger = logging.getLogger('testlogger')
-    logger.info('This is a simple log message')
     data = request.get_json(silent=True)
-    # data is empty
-    #config = configparser.ConfigParser()
-    #config.read('config.cfg')
-    #print(config)
-    #email = config.get('DEFAULT', 'email')
-    #val = config.get('DEFAULT', 'info')
+    logger.info(data)
     email = os.getenv('username')
     val = os.getenv('pw')
-    #email = email[1:-1]
-    #val = val[1:-1]
     gmail_user = email
     gmail_password = val
-
     sent_from = gmail_user
     logger.info("logger username: "+gmail_user)
-
     to = ['amahmood561@gmail.com']
     subject = data.get('subject')
     body = data.get('message')
-    #subject = 'OMG Super Important Message'
-    #body = "Hey, what's sup?\n\n - You"
 
     message = MIMEMultipart()
     message['From'] = sent_from
