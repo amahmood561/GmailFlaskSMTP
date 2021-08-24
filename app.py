@@ -24,8 +24,11 @@ def customemail():
     logger = logging.getLogger('testlogger')
     data = request.get_json(silent=True)
     logger.info(data)
+    print(data)
     email = os.getenv('username')
     val = os.getenv('pw')
+    print(email)
+    print(val)
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
