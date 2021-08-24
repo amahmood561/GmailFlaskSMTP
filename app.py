@@ -20,6 +20,9 @@ def send_emails():
 
 @app.route('/v1/customemail', methods=['GET','POST'])
 def customemail():
+    import logging
+    logger = logging.getLogger('testlogger')
+    logger.info('This is a simple log message')
     data = request.get_json(silent=True)
     # data is empty
     #config = configparser.ConfigParser()
@@ -35,6 +38,7 @@ def customemail():
     gmail_password = val
 
     sent_from = gmail_user
+    logger.info("logger username: "+gmail_user)
 
     to = ['amahmood561@gmail.com']
     subject = data.get('subject')
@@ -55,7 +59,7 @@ def customemail():
         server.login(gmail_user, gmail_password)
         server.sendmail(sent_from, to, mime_test)
         server.close()
-
+        logger.info("sent emial")
         print('Email sent!')
     except :
         print('Something went wrong...')
