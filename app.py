@@ -22,9 +22,9 @@ def send_emails():
 def customemail():
     data = request.get_json(silent=True)
     # data is empty
-    config = configparser.ConfigParser()
-    config.read('config.cfg')
-    print(config)
+    #config = configparser.ConfigParser()
+    #config.read('config.cfg')
+    #print(config)
     #email = config.get('DEFAULT', 'email')
     #val = config.get('DEFAULT', 'info')
     email = os.getenv('username')
