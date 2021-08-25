@@ -37,6 +37,8 @@ def customemail():
     sent_from = gmail_user
     app.logger.error("logger username: "+gmail_user)
     to = ['amahmood561@gmail.com']
+    language = request.form.get('subject')
+
     subject = data.get('subject')
     body = data.get('message')
 
