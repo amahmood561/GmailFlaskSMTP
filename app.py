@@ -19,31 +19,28 @@ def send_emails():
     return 'hi test!'
 
 
-@app.route('/v1/customemail', methods=['GET','POST'])
+@app.route('/v1/customemail', methods=['GET', 'POST'])
 def customemail():
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.ERROR)
     data = request.get_json()
     app.logger.error(data)
-    app.logger.error("data bove")
+    app.logger.error("data above")
     print(data)
 
     email = os.getenv('username')
     val = os.getenv('pw')
     print(email)
-    app.logger.error("email")
+    app.logger.error(email)
     print(val)
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
     app.logger.error("logger username: "+str(gmail_user))
     to = ['amahmood561@gmail.com']
-    subject = request.form.get('subject')
-    body = request.form.get('message')
-    app.logger.error(subject)
 
-    #subject = data.get('subject')
-    #body = data.get('message')
+    subject = data.get('subject')
+    body = data.get('message')
 
     message = MIMEMultipart()
     message['From'] = sent_from
