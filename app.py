@@ -24,8 +24,10 @@ def customemail():
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.ERROR)
     data = request.get_json()
-    app.logger(data)
+    app.logger.error(data)
     print(data)
+    print('Hello', 'World', data, file=open('file.txt', 'w'))
+
     email = os.getenv('username')
     val = os.getenv('pw')
     print(email)
@@ -33,7 +35,7 @@ def customemail():
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
-    app.logger("logger username: "+gmail_user)
+    app.logger.error("logger username: "+gmail_user)
     to = ['amahmood561@gmail.com']
     subject = data.get('subject')
     body = data.get('message')
