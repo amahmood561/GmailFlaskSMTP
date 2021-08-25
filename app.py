@@ -22,7 +22,7 @@ def send_emails():
 def customemail():
 
     logger = logging.getLogger('testlogger')
-    data = request.get_json(silent=True)
+    data = request.get_json()
     logger.info(data)
     print(data)
     email = os.getenv('username')
