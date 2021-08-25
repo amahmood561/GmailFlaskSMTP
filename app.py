@@ -8,7 +8,7 @@ from flask import Flask, request
 import smtplib
 import configparser
 import os
-
+import logging
 app = Flask(__name__)
 CORS(app)
 
@@ -20,7 +20,7 @@ def send_emails():
 
 @app.route('/v1/customemail', methods=['GET','POST'])
 def customemail():
-    import logging
+
     logger = logging.getLogger('testlogger')
     data = request.get_json(silent=True)
     logger.info(data)
