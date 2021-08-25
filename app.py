@@ -11,6 +11,7 @@ import os
 import logging
 app = Flask(__name__)
 CORS(app)
+import sys
 
 
 @app.route('/')
@@ -20,10 +21,10 @@ def send_emails():
 
 @app.route('/v1/customemail', methods=['GET','POST'])
 def customemail():
-
-    logger = logging.getLogger('testlogger')
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
     data = request.get_json()
-    logger.info(data)
+    app.logger(data)
     print(data)
     email = os.getenv('username')
     val = os.getenv('pw')
@@ -32,7 +33,7 @@ def customemail():
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
-    logger.info("logger username: "+gmail_user)
+    app.logger("logger username: "+gmail_user)
     to = ['amahmood561@gmail.com']
     subject = data.get('subject')
     body = data.get('message')
@@ -50,7 +51,7 @@ def customemail():
         server.login(gmail_user, gmail_password)
         server.sendmail(sent_from, to, mime_test)
         server.close()
-        logger.info("sent emial")
+        app.logger("sent emial")
         print('Email sent!')
     except :
         print('Something went wrong...')
