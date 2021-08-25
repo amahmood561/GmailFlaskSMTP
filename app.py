@@ -37,10 +37,11 @@ def customemail():
     sent_from = gmail_user
     app.logger.error("logger username: "+gmail_user)
     to = ['amahmood561@gmail.com']
-    language = request.form.get('subject')
+    subject = request.form.get('subject')
+    body = request.form.get('message')
 
-    subject = data.get('subject')
-    body = data.get('message')
+    #subject = data.get('subject')
+    #body = data.get('message')
 
     message = MIMEMultipart()
     message['From'] = sent_from
