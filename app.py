@@ -36,6 +36,8 @@ def customemail():
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
+    print(os.environ)
+    print("above is env")
     app.logger.error("logger username: "+str(gmail_user))
     to = ['amahmood561@gmail.com']
 
