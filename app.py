@@ -39,7 +39,9 @@ def customemail():
     data = request.get_json()
 
     print(data)
-    print(getCurrentEnv)
+    val2, val12 = getCurrentEnv()
+    print(val12)
+    print(val2)
 
     email = os.getenv('username')
     val = os.getenv('pw')
