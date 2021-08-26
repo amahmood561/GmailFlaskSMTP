@@ -27,7 +27,7 @@ def getCurrentEnv():
     list_files = run(["env"])
     print(list_files)
     print("")
-    readlines = str(list_files.readlines())
+    readlines = str(list_files)
     print("above is readlines")
     for line in readlines.split('\n'):
         split = line.split(':')
