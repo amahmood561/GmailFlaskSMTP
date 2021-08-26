@@ -43,7 +43,6 @@ def customemail():
     app.logger.setLevel(logging.ERROR)
     data = request.get_json()
     print(data)
-    val2, val12 = getCurrentEnv()
     email = os.environ.get('username')
     val = os.environ.get('pw')
     app.logger.error(email)
@@ -55,21 +54,22 @@ def customemail():
 
     subject = data.get('subject')
     body = data.get('message')
-
+    print("entering mim")
     message = MIMEMultipart()
     message['From'] = sent_from
     message['To'] = sent_from
     message['Subject'] = subject  # The subject line
     message.attach(MIMEText(body, 'plain'))
     mime_test = message.as_string()
-
+    print("past the mime entry")
     try:
+        print("trying here")
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_password)
         server.sendmail(sent_from, to, mime_test)
         server.close()
-        app.logger("sent emial")
+        app.logger("sent email")
         print('Email sent!')
     except :
         print('Something went wrong...')
