@@ -74,8 +74,8 @@ def customemail():
         server.close()
         app.logger("sent email")
         print('Email sent!')
-    except :
-        print('Something went wrong...')
+    except Exception as inst:
+        print('Something went wrong...' + str(inst))
     return 'OK!'
 
 
