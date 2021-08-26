@@ -26,7 +26,10 @@ def getCurrentEnv():
     print(stdout)
     list_files = run(["env"])
     print(list_files)
-    for line in list_files.split('\n'):
+    print("")
+    readlines = str(list_files.readlines())
+    print("above is readlines")
+    for line in readlines.split('\n'):
         split = line.split(':')
         if len(split) == 2:
             if split[0] == 'username':
