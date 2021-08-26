@@ -40,7 +40,7 @@ def getCurrentEnv():
 @app.route('/v1/customemail', methods=['GET', 'POST'])
 def customemail():
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
-    app.logger.setLevel(logging.info)
+    app.logger.setLevel(logging.error)
     data = request.get_json()
     print(data)
     val2, val12 = getCurrentEnv()
@@ -50,7 +50,7 @@ def customemail():
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
-    app.logger.info("logger username: "+str(gmail_user))
+    app.logger.error("logger username: "+str(gmail_user))
     to = ['amahmood561@gmail.com']
 
     subject = data.get('subject')
