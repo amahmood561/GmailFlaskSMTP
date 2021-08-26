@@ -50,7 +50,7 @@ def customemail():
     gmail_user = email
     gmail_password = val
     sent_from = gmail_user
-    app.logger.ERROR("logger username: "+str(gmail_user))
+    app.logger.error("logger username: "+str(gmail_user))
     to = ['amahmood561@gmail.com']
 
     subject = data.get('subject')
