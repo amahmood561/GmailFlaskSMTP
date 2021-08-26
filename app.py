@@ -13,20 +13,33 @@ app = Flask(__name__)
 CORS(app)
 import sys
 
+from subprocess import Popen, PIPE
 
 @app.route('/')
 def send_emails():
     return 'hi test!'
 
+def getCurrentEnv():
+    username = pw = None
+
+    stdout, stderr = Popen(['heroku', 'config'], stdout=PIPE, stderr=PIPE).communicate()
+    for line in stdout.split('\n'):
+        split = line.split(':')
+        if len(split) == 2:
+            if split[0] == 'username':
+                username = split[1].strip()
+            elif split[0] == 'pw':
+                pw = split[1].strip()
+    return username, pw
 
 @app.route('/v1/customemail', methods=['GET', 'POST'])
 def customemail():
     app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.ERROR)
     data = request.get_json()
-    app.logger.error(data)
-    app.logger.error("data above")
+
     print(data)
+    print(getCurrentEnv)
 
     email = os.getenv('username')
     val = os.getenv('pw')
